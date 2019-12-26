@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1_2_1/%E6%8C%87%E9%92%88.dart';
 import 'package:flutter_1_2_1/layout.dart';
 import 'package:flutter_1_2_1/list_widget.dart';
 import 'package:flutter_1_2_1/router.dart';
 import 'package:flutter_1_2_1/basic_anim.dart';
 import 'package:flutter_1_2_1/anim_widget.dart';
 import 'package:flutter_1_2_1/anim_builder.dart';
-void main() => runApp(MyAnimApp());
+import 'package:flutter_1_2_1/stager.dart';
+import 'package:flutter_1_2_1/sync_anim.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,7 +21,57 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: SimpleListView2(),
+//      home: SimpleListView2(),
+//      home: HeroPage(),
+//    home: PointEventPage(title: "Flutter--指针",),
+    home: GestureF(),
+    );
+  }
+}
+
+/***
+ * Hero动画
+ * */
+class HeroPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Hero动画"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            InkWell(
+              child: Hero(
+                  tag: "hero",
+                  child: ClipOval(
+                    child: Image.asset(
+                      "assets/images/ic_launcher.png",
+                      width: 50,
+                      height: 50,
+                    ),
+                  )),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Scaffold(
+                    body: Center(
+                      child: Hero(
+                          tag: "hero",
+                          child: Image.asset(
+                            "assets/images/ic_launcher.png",
+                            width: 300,
+                            height: 300,
+                          )),
+                    ),
+                  );
+                }));
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -63,10 +117,13 @@ class MyAnimApp extends StatelessWidget {
     return MaterialApp(
       title: "动画",
       theme: ThemeData(primaryColor: Colors.blue),
-      home: AnimBuilder(),
+//      home: AnimBuilder(),
+      home: SyncAnim(),
     );
   }
 }
+
+
 
 class NewPage extends StatefulWidget {
   @override

@@ -7,6 +7,7 @@ class AnimBuilder extends StatefulWidget {
   }
 }
 
+
 class WidgetAnimationState extends State<AnimBuilder>
     with SingleTickerProviderStateMixin {
   Animation _animation;
@@ -16,8 +17,8 @@ class WidgetAnimationState extends State<AnimBuilder>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2000));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
     _tween = Tween(begin: 0, end: 300);
     _animation = _tween.animate(
         CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
